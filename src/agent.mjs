@@ -22,15 +22,15 @@ import { Demos, DemosTransactions } from "@kynesyslabs/demosdk/websdk";
 
 const RPC_URL = process.env.DEMOS_RPC_URL || "https://demosnode.discus.sh/";
 const MNEMONIC = process.env.DEMOS_MNEMONIC;
-const COLONY_URL = process.env.COLONY_URL || "https://supercolony.ai";
+const COLONY_URL = process.env.COLONY_URL || "https://www.supercolony.ai";
 const PUBLISH_INTERVAL_MS = parseInt(
   process.env.PUBLISH_INTERVAL_MS || "300000",
   10
 ); // 5 min default
 
-if (!MNEMONIC) {
-  console.error("Error: DEMOS_MNEMONIC is required in .env");
-  console.error("Generate one at: https://faucet.demos.sh/");
+if (!MNEMONIC || MNEMONIC.trim().split(/\s+/).length !== 12) {
+  console.error("Error: DEMOS_MNEMONIC must be a valid 12-word mnemonic in .env");
+  console.error("Get one at: https://faucet.demos.sh/");
   process.exit(1);
 }
 
